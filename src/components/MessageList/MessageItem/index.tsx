@@ -13,4 +13,3 @@ export default function MessageItem({ message }: MessageProps): JSX.Element {
     </div>
   );
 }
-

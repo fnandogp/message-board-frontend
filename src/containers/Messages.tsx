@@ -3,11 +3,10 @@ import MessageList from '../components/MessageList';
 
 function Messages() {
   const messages = [
-    {
-      content: 'Hello',
-      author: 'FP',
-    },
+    { id: '1', content: 'Hello', author: 'F' },
+    { id: '2', content: 'World', author: 'P' },
   ];
+
   return <MessageList messages={messages} />;
 }
 
