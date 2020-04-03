@@ -1,5 +1,6 @@
 import React from 'react';
 import { Message } from '../../../types';
+import { Container, Author, Content } from './styles';
 
 type MessageProps = {
   message: Message;
@@ -7,9 +8,9 @@ type MessageProps = {
 
 export default function MessageItem({ message }: MessageProps): JSX.Element {
   return (
-    <div>
-      <p>{message.content}</p>
-      <small>{message.author}</small>
-    </div>
+    <Container>
+      <Content>{message.content}</Content>
+      <Author>{message.author}</Author>
+    </Container>
   );
 }

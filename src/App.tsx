@@ -1,11 +1,15 @@
 import React from 'react';
 import logo from './logo.png';
+import Messages from './containers/Messages';
+import './index.css';
+import { Container } from './styles';
 
 function App() {
   return (
-    <div className="App">
+    <Container>
       <img src={logo} className="App-logo" alt="logo" />
-    </div>
+      <Messages></Messages>
+    </Container>
   );
 }
 
