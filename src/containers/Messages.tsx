@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MessageList from '../components/MessageList';
+import api from '../servives/api';
 
 function Messages() {
-  const messages = [
-    { id: '1', content: 'Hello', author: 'F' },
-    { id: '2', content: 'World', author: 'P' },
-  ];
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    api.get('messages').then((response) => {
+      setMessages(response.data);
+    });
+  }, []);
 
   return <MessageList messages={messages} />;
 }

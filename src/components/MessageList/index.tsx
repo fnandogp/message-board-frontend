@@ -8,8 +8,6 @@ type MessageListProps = {
 };
 
 export default function MessageList({ messages }: MessageListProps) {
-  console.log(messages);
-
   return (
     <Container>
       {messages.map((message) => (
