@@ -16,11 +16,25 @@ export interface ApplicationState {
   messages: MessagesState;
 }
 
-const sagaMiddleware = createSagaMiddleware();
+const middlewares = [];
+
+const sagaMonitor =
+  process.env.NODE_ENV === 'development'
+    ? console.tron.createSagaMonitor()
+    : null;
+
+const sagaMiddleware = createSagaMiddleware({ sagaMonitor });
+
+middlewares.push(sagaMiddleware);
+
+const composer =
+  process.env.NODE_ENV === 'development'
+    ? compose(applyMiddleware(...middlewares), console.tron.createEnhancer())
+    : compose(applyMiddleware(...middlewares));
 
 const store: Store<ApplicationState> = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware)),
+  composeWithDevTools(composer),
 );
 
 sagaMiddleware.run(rootSaga);
