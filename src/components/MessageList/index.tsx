@@ -7,7 +7,9 @@ type MessageListProps = {
   messages: Message[];
 };
 
-export default function MessageList({ messages }: MessageListProps) {
+const MessageList: React.FunctionComponent<MessageListProps> = ({
+  messages,
+}: MessageListProps) => {
   return (
     <Container>
       {messages.map((message) => (
@@ -15,4 +17,5 @@ export default function MessageList({ messages }: MessageListProps) {
       ))}
     </Container>
   );
-}
+};
+export default MessageList;

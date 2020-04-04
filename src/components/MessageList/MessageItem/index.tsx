@@ -2,15 +2,19 @@ import React from 'react';
 import { Container, Author, Content } from './styles';
 import { Message } from '../../../store/ducks/messages/types';
 
-type MessageProps = {
+type MessageItemProps = {
   message: Message;
 };
 
-export default function MessageItem({ message }: MessageProps): JSX.Element {
+const MessageItem: React.FunctionComponent<MessageItemProps> = ({
+  message,
+}: MessageItemProps) => {
   return (
     <Container>
       <Content>{message.content}</Content>
       <Author>{message.author}</Author>
     </Container>
   );
-}
+};
+
+export default MessageItem;

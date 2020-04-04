@@ -11,15 +11,16 @@ type MessagesProps = {
   indexRequest: Function;
 };
 
-function Messages({ messages, indexRequest }: MessagesProps) {
-  console.log('messages', messages);
+const Messages: React.FunctionComponent<MessagesProps> = ({
+  messages,
+  indexRequest,
+}: MessagesProps) => {
   useEffect(() => {
-    console.log('asdasd');
     indexRequest();
   }, [indexRequest]);
 
   return <MessageList messages={messages} />;
-}
+};
 
 const mapStateToProps = (state: ApplicationState) => {
   return { messages: state.messages.data };
