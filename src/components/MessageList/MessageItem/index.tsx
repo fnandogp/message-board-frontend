@@ -1,6 +1,6 @@
 import React from 'react';
-import { Message } from '../../../types';
 import { Container, Author, Content } from './styles';
+import { Message } from '../../../store/ducks/messages/types';
 
 type MessageProps = {
   message: Message;

@@ -1,17 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Dispatch, bindActionCreators } from 'redux';
+import { ApplicationState } from '../store';
+import { Message } from '../store/ducks/messages/types';
 import MessageList from '../components/MessageList';
-import api from '../servives/api';
+import * as MessagesActions from '../store/ducks/messages/actions';
 
-function Messages() {
-  const [messages, setMessages] = useState([]);
+type MessagesProps = {
+  messages: Message[];
+  indexRequest: Function;
+};
 
+function Messages({ messages, indexRequest }: MessagesProps) {
+  console.log('messages', messages);
   useEffect(() => {
-    api.get('messages').then((response) => {
-      setMessages(response.data);
-    });
-  }, []);
+    console.log('asdasd');
+    indexRequest();
+  }, [indexRequest]);
 
   return <MessageList messages={messages} />;
 }
 
-export default Messages;
+const mapStateToProps = (state: ApplicationState) => {
+  return { messages: state.messages.data };
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(MessagesActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);
