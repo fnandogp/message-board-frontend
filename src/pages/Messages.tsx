@@ -7,23 +7,39 @@ import MessageList from '../components/MessageList';
 import * as MessagesActions from '../store/ducks/messages/actions';
 
 type MessagesProps = {
-  messages: Message[];
+  data: Message[];
+  deleted: boolean;
   indexRequest: Function;
+  deleteRequest: Function;
 };
 
 const Messages: React.FunctionComponent<MessagesProps> = ({
-  messages,
+  data: messages,
+  deleted,
   indexRequest,
+  deleteRequest,
 }: MessagesProps) => {
   useEffect(() => {
     indexRequest();
   }, [indexRequest]);
 
-  return <MessageList messages={messages} />;
+  useEffect(() => {
+    if (deleted) {
+      indexRequest();
+    }
+  }, [deleted]);
+
+  const handleDeleteClick = (id: string) => {
+    deleteRequest({ id });
+  };
+
+  return (
+    <MessageList messages={messages} handleDeleteClick={handleDeleteClick} />
+  );
 };
 
 const mapStateToProps = (state: ApplicationState) => {
-  return { messages: state.messages.data };
+  return state.messages;
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) =>

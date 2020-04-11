@@ -6,6 +6,7 @@ const INITIAL_STATE: MessagesState = {
   loading: false,
   errors: [],
   created: false,
+  deleted: false,
 };
 
 const reducer: Reducer<MessagesState, MessagesAction> = (
@@ -16,25 +17,21 @@ const reducer: Reducer<MessagesState, MessagesAction> = (
     case MessagesActionTypes.INDEX_REQUEST:
       return { ...state, loading: true, errors: [] };
     case MessagesActionTypes.INDEX_SUCCESS:
-      return {
-        ...state,
-        data: action.payload.data,
-        loading: false,
-        errors: [],
-      };
+      return { ...state, data: action.payload.data, loading: false };
     case MessagesActionTypes.INDEX_FAILURE:
       return { ...state, loading: false, errors: [] };
     case MessagesActionTypes.CREATE_REQUEST:
       return { ...state, loading: true, errors: [], created: false };
     case MessagesActionTypes.CREATE_SUCCESS:
-      return { ...state, loading: false, errors: [], created: true };
+      return { ...state, loading: false, created: true };
     case MessagesActionTypes.CREATE_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        errors: action.payload.errors,
-        created: false,
-      };
+      return { ...state, loading: false, errors: action.payload.errors };
+    case MessagesActionTypes.DELETE_REQUEST:
+      return { ...state, loading: true, errors: [], deleted: false };
+    case MessagesActionTypes.DELETE_SUCCESS:
+      return { ...state, loading: false, deleted: true };
+    case MessagesActionTypes.DELETE_FAILURE:
+      return { ...state, loading: false, errors: action.payload.errors };
     default:
       return state;
   }

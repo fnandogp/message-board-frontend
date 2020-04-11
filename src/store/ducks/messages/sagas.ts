@@ -5,8 +5,14 @@ import {
   indexFailure,
   createSuccess,
   createFailure,
+  deleteSuccess,
+  deleteFailure,
 } from './actions';
-import { MessagesActionTypes, MessagesCreateRequestAction } from './types';
+import {
+  MessagesActionTypes,
+  MessagesCreateRequestAction,
+  MessagesDeleteRequestAction,
+} from './types';
 
 export function* index() {
   try {
@@ -19,15 +25,24 @@ export function* index() {
 
 export function* create(action: MessagesCreateRequestAction) {
   try {
-    console.log('saga action', action);
     yield call(api.post, 'messages', action.payload.data);
     yield put(createSuccess());
   } catch (error) {
-    yield put(createFailure(error.response.data.message));
+    yield put(createFailure(error.response.data.message ?? []));
+  }
+}
+
+export function* del(action: MessagesDeleteRequestAction) {
+  try {
+    yield call(api.delete, `messages/${action.payload.data.id}`);
+    yield put(deleteSuccess());
+  } catch (error) {
+    yield put(deleteFailure(error.response.data.message ?? []));
   }
 }
 
 export default [
   takeLatest(MessagesActionTypes.INDEX_REQUEST, index),
   takeLatest(MessagesActionTypes.CREATE_REQUEST, create),
+  takeLatest(MessagesActionTypes.DELETE_REQUEST, del),
 ];

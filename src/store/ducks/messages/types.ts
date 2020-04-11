@@ -1,4 +1,4 @@
-import { MessageCreateDto } from './dtos';
+import { MessageCreateDto, MessageDeleteDto } from './dtos';
 
 export interface Message {
   id: string;
@@ -11,6 +11,7 @@ export interface MessagesState {
   errors: string[];
   loading: boolean;
   created: boolean;
+  deleted: boolean;
 }
 
 export enum MessagesActionTypes {
@@ -20,6 +21,9 @@ export enum MessagesActionTypes {
   CREATE_REQUEST = '@MESSAGES/CREATE_REQUEST',
   CREATE_SUCCESS = '@MESSAGES/CREATE_SUCCESS',
   CREATE_FAILURE = '@MESSAGES/CREATE_FAILURE',
+  DELETE_REQUEST = '@MESSAGES/DELETE_REQUEST',
+  DELETE_SUCCESS = '@MESSAGES/DELETE_SUCCESS',
+  DELETE_FAILURE = '@MESSAGES/DELETE_FAILURE',
 }
 
 export interface MessagesIndexRequestAction {
@@ -44,13 +48,25 @@ export interface MessagesCreateRequestAction {
 
 export interface MessagesCreateSuccessAction {
   type: MessagesActionTypes.CREATE_SUCCESS;
-  payload: {
-    data: Message;
-  };
+  payload: { data: Message };
 }
 
 export interface MessagesCreateFailureAction {
   type: MessagesActionTypes.CREATE_FAILURE;
+  payload: { errors: string[] };
+}
+
+export interface MessagesDeleteRequestAction {
+  type: MessagesActionTypes.DELETE_REQUEST;
+  payload: { data: MessageDeleteDto };
+}
+
+export interface MessagesDeleteSuccessAction {
+  type: MessagesActionTypes.DELETE_SUCCESS;
+}
+
+export interface MessagesDeleteFailureAction {
+  type: MessagesActionTypes.DELETE_FAILURE;
   payload: { errors: string[] };
 }
 
@@ -60,4 +76,7 @@ export type MessagesAction =
   | MessagesIndexFailureAction
   | MessagesCreateRequestAction
   | MessagesCreateSuccessAction
-  | MessagesCreateFailureAction;
+  | MessagesCreateFailureAction
+  | MessagesDeleteRequestAction
+  | MessagesDeleteSuccessAction
+  | MessagesDeleteFailureAction;
