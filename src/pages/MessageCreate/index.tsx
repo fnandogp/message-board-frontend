@@ -8,14 +8,12 @@ import { useHistory } from 'react-router-dom';
 
 type MessagesCreateProps = {
   loading: boolean;
-  errors: string[];
   created: boolean;
   createRequest: Function;
 };
 
 const MessagesCreate: React.FunctionComponent<MessagesCreateProps> = ({
   loading,
-  errors,
   created,
   createRequest,
 }: MessagesCreateProps) => {
@@ -45,7 +43,6 @@ const MessagesCreate: React.FunctionComponent<MessagesCreateProps> = ({
   return (
     <MessagesCreateForm
       loading={loading}
-      errors={errors}
       content={content}
       handleContentChange={handleContentChange}
       author={author}

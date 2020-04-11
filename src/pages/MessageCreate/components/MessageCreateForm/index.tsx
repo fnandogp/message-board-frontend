@@ -1,10 +1,8 @@
 import React from 'react';
 import { Form, Label, InputTextarea, InputText, SubmitButton } from './styles';
-import Alert from '../../../../components/Alert';
 
 type MessageCreateFormProps = {
   loading: boolean;
-  errors: string[];
   content: string;
   handleContentChange: React.ChangeEventHandler;
   author: string;
@@ -14,7 +12,6 @@ type MessageCreateFormProps = {
 
 const MessageCreateForm: React.FunctionComponent<MessageCreateFormProps> = ({
   loading,
-  errors,
   content,
   handleContentChange,
   author,
@@ -23,7 +20,6 @@ const MessageCreateForm: React.FunctionComponent<MessageCreateFormProps> = ({
 }: MessageCreateFormProps) => {
   return (
     <Form action="POST" onSubmit={handleSubmit}>
-      <Alert errors={errors}></Alert>
       <Label htmlFor="content">Content</Label>
       <InputTextarea
         name="content"

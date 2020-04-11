@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './ducks/rootReducer';
 import rootSaga from './ducks/rootSaga';
 import { MessagesState } from './ducks/messages/types';
+import { AlertState } from './ducks/alert/types';
 
 declare global {
   interface Window {
@@ -14,6 +15,7 @@ declare global {
 
 export interface ApplicationState {
   messages: MessagesState;
+  alert: AlertState;
 }
 
 const sagaMiddleware = createSagaMiddleware();

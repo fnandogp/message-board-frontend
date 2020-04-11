@@ -13,6 +13,7 @@ import {
   MessagesCreateRequestAction,
   MessagesDeleteRequestAction,
 } from './types';
+import { set as setAlert } from '../alert/actions';
 
 export function* index() {
   try {
@@ -28,7 +29,10 @@ export function* create(action: MessagesCreateRequestAction) {
     yield call(api.post, 'messages', action.payload.data);
     yield put(createSuccess());
   } catch (error) {
-    yield put(createFailure(error.response.data.message ?? []));
+    const items: string[] = error.response.data.message ?? [];
+
+    yield put(createFailure());
+    yield put(setAlert({ type: 'danger', items }));
   }
 }
 
@@ -37,7 +41,10 @@ export function* del(action: MessagesDeleteRequestAction) {
     yield call(api.delete, `messages/${action.payload.data.id}`);
     yield put(deleteSuccess());
   } catch (error) {
-    yield put(deleteFailure(error.response.data.message ?? []));
+    const items: string[] = error.response.data.message ?? [];
+
+    yield put(deleteFailure());
+    yield put(setAlert({ type: 'danger', items }));
   }
 }
 

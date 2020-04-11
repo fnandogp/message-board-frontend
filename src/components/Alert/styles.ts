@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+export const Container = styled.div``;
+
 export const List = styled.ul`
   padding: 0;
   background: #ffe7e7;

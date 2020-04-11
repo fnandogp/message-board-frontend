@@ -9,23 +9,16 @@ export const indexSuccess = (data: Message[]) =>
 
 export const indexFailure = () => action(MessagesActionTypes.INDEX_FAILURE);
 
-export const createRequest = (data: MessageCreateDto) => {
-  return action(MessagesActionTypes.CREATE_REQUEST, { data });
-};
+export const createRequest = (data: MessageCreateDto) =>
+  action(MessagesActionTypes.CREATE_REQUEST, { data });
 
 export const createSuccess = () => action(MessagesActionTypes.CREATE_SUCCESS);
 
-export const createFailure = (errors: string[]) =>
-  action(MessagesActionTypes.CREATE_FAILURE, { errors });
+export const createFailure = () => action(MessagesActionTypes.CREATE_FAILURE);
 
-export const deleteRequest = (data: MessageDeleteDto) => {
-  return action(MessagesActionTypes.DELETE_REQUEST, { data });
-};
+export const deleteRequest = (data: MessageDeleteDto) =>
+  action(MessagesActionTypes.DELETE_REQUEST, { data });
 
-export const deleteSuccess = () => {
-  return action(MessagesActionTypes.DELETE_SUCCESS);
-};
+export const deleteSuccess = () => action(MessagesActionTypes.DELETE_SUCCESS);
 
-export const deleteFailure = (errors: string[]) => {
-  return action(MessagesActionTypes.DELETE_FAILURE, { errors });
-};
+export const deleteFailure = () => action(MessagesActionTypes.DELETE_FAILURE);
