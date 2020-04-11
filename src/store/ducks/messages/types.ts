@@ -8,8 +8,9 @@ export interface Message {
 
 export interface MessagesState {
   data: Message[];
-  loading: boolean;
   errors: string[];
+  loading: boolean;
+  created: boolean;
 }
 
 export enum MessagesActionTypes {

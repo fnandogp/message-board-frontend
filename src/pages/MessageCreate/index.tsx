@@ -1,23 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import MessagesCreateForm from './components/MessageCreateForm';
 import * as MessagesActions from '../../store/ducks/messages/actions';
 import { ApplicationState } from '../../store';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 type MessagesCreateProps = {
   loading: boolean;
   errors: string[];
+  created: boolean;
   createRequest: Function;
 };
 
 const MessagesCreate: React.FunctionComponent<MessagesCreateProps> = ({
   loading,
   errors,
+  created,
   createRequest,
 }: MessagesCreateProps) => {
+  const history = useHistory();
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('');
+
+  useEffect(() => {
+    if (created) {
+      history.push('/');
+    }
+  }, [created]);
 
   const handleContentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setContent(event.target.value);
