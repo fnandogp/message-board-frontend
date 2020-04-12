@@ -25,7 +25,7 @@ const MessagesCreate: React.FunctionComponent<MessagesCreateProps> = ({
     if (created) {
       history.push('/');
     }
-  }, [created]);
+  }, [created, history]);
 
   const handleContentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setContent(event.target.value);
