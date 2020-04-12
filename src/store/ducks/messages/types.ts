@@ -8,7 +8,6 @@ export interface Message {
 
 export interface MessagesState {
   data: Message[];
-  errors: string[];
   loading: boolean;
   created: boolean;
   deleted: boolean;
@@ -53,7 +52,6 @@ export interface MessagesCreateSuccessAction {
 
 export interface MessagesCreateFailureAction {
   type: MessagesActionTypes.CREATE_FAILURE;
-  payload: { errors: string[] };
 }
 
 export interface MessagesDeleteRequestAction {
@@ -67,7 +65,6 @@ export interface MessagesDeleteSuccessAction {
 
 export interface MessagesDeleteFailureAction {
   type: MessagesActionTypes.DELETE_FAILURE;
-  payload: { errors: string[] };
 }
 
 export type MessagesAction =

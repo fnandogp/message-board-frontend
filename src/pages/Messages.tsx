@@ -27,7 +27,7 @@ const Messages: React.FunctionComponent<MessagesProps> = ({
     if (deleted) {
       indexRequest();
     }
-  }, [deleted]);
+  }, [deleted, indexRequest]);
 
   const handleDeleteClick = (id: string) => {
     deleteRequest({ id });
