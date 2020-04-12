@@ -1,7 +1,8 @@
 html {
   height: 100%;
+  padding: 1rem;
+  border: 3px solid black;
 }
-
 
 body {
   min-height: 100%;
