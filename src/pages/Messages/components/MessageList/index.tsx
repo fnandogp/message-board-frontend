@@ -1,7 +1,7 @@
 import React from 'react';
 import MessageItem from './MessageItem';
 import { Container } from './styles';
-import { Message } from '../../store/ducks/messages/types';
+import { Message } from '../../../../store/ducks/messages/types';
 
 type MessageListProps = {
   messages: Message[];

@@ -1,19 +1,22 @@
 import React from 'react';
-import logo from './logo.png';
-import AppRouter from './AppRouter';
+import logo from './logo.svg';
 import './index.css';
-import { Container } from './styles';
-import { Provider } from 'react-redux';
-import store from './store';
+import { BrowserRouter } from 'react-router-dom';
+import { Container, Logo } from './styles';
+import AppMenu from './components/AppMenu';
+import AppRoutes from './components/AppRouter';
+import Alert from './components/Alert';
 
 function App() {
   return (
-    <Provider store={store}>
-      <Container>
-        <img src={logo} className="App-logo" alt="logo" />
-        <AppRouter></AppRouter>
-      </Container>
-    </Provider>
+    <Container>
+      <BrowserRouter>
+        <AppMenu></AppMenu>
+        <Logo src={logo} alt="logo"></Logo>
+        <Alert />
+        <AppRoutes></AppRoutes>
+      </BrowserRouter>
+    </Container>
   );
 }
 

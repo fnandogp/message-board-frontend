@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { bindActionCreators, Dispatch } from 'redux';
 import MessagesCreateForm from './components/MessageCreateForm';
-import * as MessagesActions from '../../store/ducks/messages/actions';
+import * as actions from '../../store/ducks/messages/actions';
 import { ApplicationState } from '../../store';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -57,6 +57,6 @@ const mapStateToProps = (state: ApplicationState) => {
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-  bindActionCreators(MessagesActions, dispatch);
+  bindActionCreators(actions, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessagesCreate);
