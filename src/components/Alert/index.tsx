@@ -1,9 +1,9 @@
 import React from 'react';
 import { Container, List, ListItem } from './styles';
 import { connect } from 'react-redux';
-import { ApplicationState } from '../../store';
 import { bindActionCreators, Dispatch } from 'redux';
 import * as actions from '../../store/ducks/alert/actions';
+import { ApplicationState } from '../../store/ducks/rootReducer';
 
 type AlertProps = {
   success: string[];

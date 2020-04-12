@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware, Store, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware as createRouterMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import rootReducer from './ducks/rootReducer';
+import createRootReducer, { ApplicationState } from './ducks/rootReducer';
 import rootSaga from './ducks/rootSaga';
-import { MessagesState } from './ducks/messages/types';
-import { AlertState } from './ducks/alert/types';
 
 declare global {
   interface Window {
@@ -13,16 +13,14 @@ declare global {
   }
 }
 
-export interface ApplicationState {
-  messages: MessagesState;
-  alert: AlertState;
-}
+export const history = createBrowserHistory();
 
 const sagaMiddleware = createSagaMiddleware();
+const routerMiddleware = createRouterMiddleware(history);
 
 const store: Store<ApplicationState> = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(sagaMiddleware)),
+  createRootReducer(history),
+  composeWithDevTools(applyMiddleware(routerMiddleware, sagaMiddleware)),
 );
 
 sagaMiddleware.run(rootSaga);

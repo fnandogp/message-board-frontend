@@ -14,6 +14,7 @@ import {
   MessagesDeleteRequestAction,
 } from './types';
 import { set as setAlert } from '../alert/actions';
+import { push } from 'connected-react-router';
 
 export function* index() {
   try {
@@ -28,6 +29,7 @@ export function* create(action: MessagesCreateRequestAction) {
   try {
     yield call(api.post, 'messages', action.payload.data);
     yield put(createSuccess());
+    yield put(push('/'));
   } catch (error) {
     const items: string[] = error.response.data.message ?? [];
 
