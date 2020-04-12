@@ -1,7 +1,6 @@
 html {
   height: 100%;
   padding: 1rem;
-  border: 3px solid black;
 }
 
 body {
@@ -10,7 +9,7 @@ body {
   font-family: 'Roboto Mono';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #F1f1f1;
+  background: #f1f1f1;
 }
 
 code {

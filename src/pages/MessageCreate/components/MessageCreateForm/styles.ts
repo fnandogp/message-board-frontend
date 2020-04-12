@@ -7,7 +7,6 @@ export const Form = styled.form`
 export const Label = styled.label`
   display: block;
   width: 100%;
-  margin: 0.5rem;
   font-size: 0.5rem;
 `;
 

@@ -18,6 +18,7 @@ const App: React.FunctionComponent = () => {
     <Container>
       <AppMenu></AppMenu>
       <Logo src={logo} alt="logo"></Logo>
+      <Alert></Alert>
       <AppRoutes></AppRoutes>
     </Container>
   );

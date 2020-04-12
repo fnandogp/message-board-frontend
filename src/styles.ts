@@ -9,4 +9,6 @@ export const Container = styled.div`
   justify-content: center;
 `;
 
-export const Logo = styled.img``;
+export const Logo = styled.img`
+  width: 50%;
+`;
