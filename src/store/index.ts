@@ -4,8 +4,9 @@ import { createBrowserHistory } from 'history';
 import { routerMiddleware as createRouterMiddleware } from 'connected-react-router';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import createRootReducer, { ApplicationState } from './ducks/rootReducer';
-import rootSaga from './ducks/rootSaga';
+import { ApplicationState } from './types';
+import createRootReducer from './reducers';
+import rootSaga from './sagas';
 
 declare global {
   interface Window {

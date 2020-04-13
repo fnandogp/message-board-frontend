@@ -1,5 +1,5 @@
+import { ValidationError } from '../types';
 import { MessageCreateDto, MessageDeleteDto } from './dtos';
-import { ValidationError } from '../../../servives/api';
 
 export interface Message {
   id: string;

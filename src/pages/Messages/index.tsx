@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Dispatch, bindActionCreators } from 'redux';
-import { ApplicationState } from '../../store/ducks/rootReducer';
-import { Message } from '../../store/ducks/messages/types';
-import * as actions from '../../store/ducks/messages/actions';
-
+import { bindActionCreators, Dispatch } from 'redux';
+import * as actions from '../../store/messages/actions';
+import { Message } from '../../store/messages/types';
+import { ApplicationState } from '../../store/types';
 import MessageList from './components/MessageList';
 
 type MessagesProps = {

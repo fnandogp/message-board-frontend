@@ -1,5 +1,4 @@
 import React from 'react';
-import { ValidationError } from '../../../../servives/api';
 import {
   Form,
   InputText,
@@ -8,6 +7,7 @@ import {
   InputFeedback,
   SubmitButton,
 } from './styles';
+import { ValidationError } from '../../../../store/types';
 
 type MessageCreateFormProps = {
   loading: boolean;

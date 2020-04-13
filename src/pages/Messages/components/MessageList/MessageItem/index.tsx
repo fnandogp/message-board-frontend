@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Author, Content, DeleteButton } from './styles';
-import { Message } from '../../../../../store/ducks/messages/types';
+import { Message } from '../../../../../store/messages/types';
 
 type MessageItemProps = {
   message: Message;

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
-import { ValidationError } from '../../servives/api';
-import * as actions from '../../store/ducks/messages/actions';
-import { ApplicationState } from '../../store/ducks/rootReducer';
+import * as actions from '../../store/messages/actions';
+import { ApplicationState, ValidationError } from '../../store/types';
 import MessagesCreateForm from './components/MessageCreateForm';
 
 type MessagesCreateProps = {

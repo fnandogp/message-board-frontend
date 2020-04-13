@@ -1,5 +1,5 @@
 import { MessagesState, MessagesActionTypes, MessagesAction } from './types';
-import { Reducer } from 'react';
+import { Reducer } from 'redux';
 
 const INITIAL_STATE: MessagesState = {
   data: [],

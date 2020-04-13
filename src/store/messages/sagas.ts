@@ -1,19 +1,21 @@
+import { push } from 'connected-react-router';
 import { call, put, takeLatest } from 'redux-saga/effects';
-import api, { ValidationError } from '../../../servives/api';
+import api from '../../servives/api';
+import { ValidationError } from '../types';
 import {
-  indexSuccess,
-  indexFailure,
-  createSuccess,
   createFailure,
-  deleteSuccess,
+  createSuccess,
   deleteFailure,
+  deleteSuccess,
+  indexFailure,
+  indexRequest,
+  indexSuccess,
 } from './actions';
 import {
   MessagesActionTypes,
   MessagesCreateRequestAction,
   MessagesDeleteRequestAction,
 } from './types';
-import { push } from 'connected-react-router';
 
 export function* index() {
   try {
@@ -40,9 +42,8 @@ export function* del(action: MessagesDeleteRequestAction) {
   try {
     yield call(api.delete, `messages/${action.payload.data.id}`);
     yield put(deleteSuccess());
+    yield put(indexRequest());
   } catch (error) {
-    //const items: string[] = error.response.data.message ?? [];
-
     yield put(deleteFailure());
   }
 }

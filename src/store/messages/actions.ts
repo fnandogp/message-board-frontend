@@ -1,7 +1,7 @@
 import { action } from 'typesafe-actions';
-import { MessagesActionTypes, Message } from './types';
+import { ValidationError } from '../types';
 import { MessageCreateDto, MessageDeleteDto } from './dtos';
-import { ValidationError } from '../../../servives/api';
+import { Message, MessagesActionTypes } from './types';
 
 export const indexRequest = () => action(MessagesActionTypes.INDEX_REQUEST);
 
