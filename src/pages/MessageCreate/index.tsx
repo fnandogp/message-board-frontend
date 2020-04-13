@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
-import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { ApplicationState } from '../../store/ducks/rootReducer';
+import { bindActionCreators, Dispatch } from 'redux';
+import { ValidationError } from '../../servives/api';
 import * as actions from '../../store/ducks/messages/actions';
-
+import { ApplicationState } from '../../store/ducks/rootReducer';
 import MessagesCreateForm from './components/MessageCreateForm';
 
 type MessagesCreateProps = {
   loading: boolean;
-  created: boolean;
+  errors: ValidationError[];
   createRequest: Function;
 };
 
 const MessagesCreate: React.FunctionComponent<MessagesCreateProps> = ({
   loading,
+  errors,
   createRequest,
 }: MessagesCreateProps) => {
   const [content, setContent] = useState('');
@@ -40,6 +41,7 @@ const MessagesCreate: React.FunctionComponent<MessagesCreateProps> = ({
       author={author}
       handleAuthorChange={handleAuthorChange}
       handleSubmit={handleSubmit}
+      errors={errors}
     ></MessagesCreateForm>
   );
 };

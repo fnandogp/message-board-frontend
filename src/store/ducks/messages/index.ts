@@ -4,8 +4,7 @@ import { Reducer } from 'react';
 const INITIAL_STATE: MessagesState = {
   data: [],
   loading: false,
-  created: false,
-  deleted: false,
+  errors: [],
 };
 
 const reducer: Reducer<MessagesState, MessagesAction> = (
@@ -14,23 +13,23 @@ const reducer: Reducer<MessagesState, MessagesAction> = (
 ) => {
   switch (action.type) {
     case MessagesActionTypes.INDEX_REQUEST:
-      return { ...INITIAL_STATE, loading: true };
+      return { ...state, loading: true, errors: [] };
     case MessagesActionTypes.INDEX_SUCCESS:
-      return { ...INITIAL_STATE, data: action.payload.data, loading: false };
+      return { ...state, data: action.payload.data, loading: false };
     case MessagesActionTypes.INDEX_FAILURE:
-      return { ...INITIAL_STATE, loading: false };
+      return { ...state, loading: false };
     case MessagesActionTypes.CREATE_REQUEST:
-      return { ...INITIAL_STATE, loading: true, created: false };
+      return { ...state, loading: true, errors: [] };
     case MessagesActionTypes.CREATE_SUCCESS:
-      return { ...INITIAL_STATE, loading: false, created: true };
+      return { ...state, loading: false };
     case MessagesActionTypes.CREATE_FAILURE:
-      return { ...INITIAL_STATE, loading: false };
+      return { ...state, loading: false, errors: action.payload };
     case MessagesActionTypes.DELETE_REQUEST:
-      return { ...INITIAL_STATE, loading: true, deleted: false };
+      return { ...state, loading: true, errors: [] };
     case MessagesActionTypes.DELETE_SUCCESS:
-      return { ...INITIAL_STATE, loading: false, deleted: true };
+      return { ...state, loading: false };
     case MessagesActionTypes.DELETE_FAILURE:
-      return { ...INITIAL_STATE, loading: false };
+      return { ...state, loading: false };
     default:
       return state;
   }

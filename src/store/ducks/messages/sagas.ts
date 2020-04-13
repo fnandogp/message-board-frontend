@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import api from '../../../servives/api';
+import api, { ValidationError } from '../../../servives/api';
 import {
   indexSuccess,
   indexFailure,
@@ -13,13 +13,12 @@ import {
   MessagesCreateRequestAction,
   MessagesDeleteRequestAction,
 } from './types';
-import { set as setAlert } from '../alert/actions';
 import { push } from 'connected-react-router';
 
 export function* index() {
   try {
     const response = yield call(api.get, 'messages');
-    yield put(indexSuccess(response.data));
+    yield put(indexSuccess(response.data.data));
   } catch (error) {
     yield put(indexFailure());
   }
@@ -31,10 +30,9 @@ export function* create(action: MessagesCreateRequestAction) {
     yield put(createSuccess());
     yield put(push('/'));
   } catch (error) {
-    const items: string[] = error.response.data.message ?? [];
+    const errors: ValidationError[] = error.response.data.message ?? [];
 
-    yield put(createFailure());
-    yield put(setAlert({ type: 'danger', items }));
+    yield put(createFailure(errors));
   }
 }
 
@@ -43,10 +41,9 @@ export function* del(action: MessagesDeleteRequestAction) {
     yield call(api.delete, `messages/${action.payload.data.id}`);
     yield put(deleteSuccess());
   } catch (error) {
-    const items: string[] = error.response.data.message ?? [];
+    //const items: string[] = error.response.data.message ?? [];
 
     yield put(deleteFailure());
-    yield put(setAlert({ type: 'danger', items }));
   }
 }
 

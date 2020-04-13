@@ -1,4 +1,5 @@
 import { MessageCreateDto, MessageDeleteDto } from './dtos';
+import { ValidationError } from '../../../servives/api';
 
 export interface Message {
   id: string;
@@ -9,8 +10,7 @@ export interface Message {
 export interface MessagesState {
   data: Message[];
   loading: boolean;
-  created: boolean;
-  deleted: boolean;
+  errors: ValidationError[];
 }
 
 export enum MessagesActionTypes {
@@ -52,6 +52,7 @@ export interface MessagesCreateSuccessAction {
 
 export interface MessagesCreateFailureAction {
   type: MessagesActionTypes.CREATE_FAILURE;
+  payload: ValidationError[];
 }
 
 export interface MessagesDeleteRequestAction {

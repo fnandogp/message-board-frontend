@@ -1,6 +1,7 @@
 import { action } from 'typesafe-actions';
 import { MessagesActionTypes, Message } from './types';
 import { MessageCreateDto, MessageDeleteDto } from './dtos';
+import { ValidationError } from '../../../servives/api';
 
 export const indexRequest = () => action(MessagesActionTypes.INDEX_REQUEST);
 
@@ -14,7 +15,8 @@ export const createRequest = (data: MessageCreateDto) =>
 
 export const createSuccess = () => action(MessagesActionTypes.CREATE_SUCCESS);
 
-export const createFailure = () => action(MessagesActionTypes.CREATE_FAILURE);
+export const createFailure = (errors: ValidationError[]) =>
+  action(MessagesActionTypes.CREATE_FAILURE, errors);
 
 export const deleteRequest = (data: MessageDeleteDto) =>
   action(MessagesActionTypes.DELETE_REQUEST, { data });

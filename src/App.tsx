@@ -4,8 +4,7 @@ import './index.css';
 import { useHistory } from 'react-router-dom';
 import { Container, Logo } from './styles';
 import AppMenu from './components/AppMenu';
-import AppRoutes from './components/AppRouter';
-import Alert from './components/Alert';
+import AppRoutes from './components/AppRoutes';
 
 const App: React.FunctionComponent = () => {
   const history = useHistory();
@@ -18,7 +17,6 @@ const App: React.FunctionComponent = () => {
     <Container>
       <AppMenu></AppMenu>
       <Logo src={logo} alt="logo"></Logo>
-      <Alert></Alert>
       <AppRoutes></AppRoutes>
     </Container>
   );
