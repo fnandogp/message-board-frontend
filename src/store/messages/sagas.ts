@@ -16,6 +16,7 @@ import {
   MessagesCreateRequestAction,
   MessagesDeleteRequestAction,
 } from './types';
+import { toast } from 'react-toastify';
 
 export function* index() {
   try {
@@ -28,8 +29,9 @@ export function* index() {
 
 export function* create(action: MessagesCreateRequestAction) {
   try {
-    yield call(api.post, 'messages', action.payload.data);
+    const response = yield call(api.post, 'messages', action.payload.data);
     yield put(createSuccess());
+    yield call(toast.success, response.data.message);
     yield put(push('/'));
   } catch (error) {
     const errors: ValidationError[] = error.response.data.message ?? [];
@@ -40,9 +42,13 @@ export function* create(action: MessagesCreateRequestAction) {
 
 export function* del(action: MessagesDeleteRequestAction) {
   try {
-    yield call(api.delete, `messages/${action.payload.data.id}`);
+    const response = yield call(
+      api.delete,
+      `messages/${action.payload.data.id}`,
+    );
     yield put(deleteSuccess());
     yield put(indexRequest());
+    yield call(toast.success, response.data.message);
   } catch (error) {
     yield put(deleteFailure());
   }
