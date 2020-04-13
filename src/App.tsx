@@ -1,20 +1,25 @@
 import React from 'react';
-import logo from './logo.png';
-import AppRouter from './AppRouter';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import AppMenu from './components/AppMenu';
+import AppRoutes from './components/AppRoutes';
 import './index.css';
-import { Container } from './styles';
-import { Provider } from 'react-redux';
-import store from './store';
+import logo from './logo.svg';
+import { Container, Logo } from './styles';
 
-function App() {
+const App: React.FunctionComponent = () => {
   return (
-    <Provider store={store}>
-      <Container>
-        <img src={logo} className="App-logo" alt="logo" />
-        <AppRouter></AppRouter>
-      </Container>
-    </Provider>
+    <Container>
+      <ToastContainer
+        closeButton={<span>&times;</span>}
+        hideProgressBar={true}
+        position="bottom-right"
+      ></ToastContainer>
+      <AppMenu></AppMenu>
+      <Logo src={logo} alt="logo"></Logo>
+      <AppRoutes></AppRoutes>
+    </Container>
   );
-}
+};
 
 export default App;

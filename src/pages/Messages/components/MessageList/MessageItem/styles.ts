@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
   width: 100%;
   background: #d0d0d0;
   padding: 0.5rem 1rem;
@@ -20,4 +21,16 @@ export const Author = styled.p`
   &:before {
     content: '-';
   }
+`;
+
+export const DeleteButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  line-height: 1;
 `;
